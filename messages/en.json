@@ -1,0 +1,128 @@
+{
+  "Meta": {
+    "title": "MadeByLuke – Lukas Graf, Fullstack Web Developer",
+    "description": "Portfolio of Lukas Graf, a fullstack web developer from Vienna building Next.js apps, central login systems and live-streaming tools."
+  },
+  "Nav": {
+    "work": "Work",
+    "skills": "Skills",
+    "path": "Path",
+    "contact": "Contact",
+    "menu": "Open menu",
+    "language": "Language",
+    "theme": "Theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "skip": "Skip to content"
+  },
+  "Hero": {
+    "role": "Fullstack web developer, Vienna",
+    "headline": "I build Next.js apps and the tools streamers run on.",
+    "lead": "From a central login for several subdomains to chat widgets that react to Twitch events in real time. I write it, deploy it and keep it running on my own servers.",
+    "ctaWork": "See my work",
+    "ctaContact": "Get in touch",
+    "scroll": "Scroll"
+  },
+  "Work": {
+    "title": "Work",
+    "intro": "Most of these run in production on a self-hosted Dokploy server.",
+    "visit": "Visit site",
+    "code": "Source",
+    "status": {
+      "live": "Live",
+      "building": "In progress",
+      "rebuilding": "Being rebuilt"
+    },
+    "projects": {
+      "aboutselphy": {
+        "name": "AboutSelphy",
+        "tagline": "Website with admin dashboard",
+        "body": "A bilingual site with stream schedule, media kit and request management. The media kit is generated as a PDF and pulls reach numbers from the YouTube and Twitch APIs. Security covers CSP with nonce, security headers, JSON-LD and database roles with least privilege."
+      },
+      "auth": {
+        "name": "Central login",
+        "tagline": "One account for every subdomain",
+        "body": "Single sign-on with Discord, Twitch and YouTube. One session works across all subdomains, roles come from Discord server roles, and platform accounts are linked without duplicates. Redirects only go to trusted origins."
+      },
+      "social": {
+        "name": "Link page",
+        "tagline": "A Linktree alternative",
+        "body": "A link page with a dashboard and drag-and-drop sorting. Subdomain redirects are defined freely in the database and cached in Redis."
+      },
+      "twitch": {
+        "name": "Twitch panel extension",
+        "tagline": "Stream schedule inside Twitch",
+        "body": "A panel that renders the stream schedule natively in HTML and CSS and loads it from the website's JSON API."
+      },
+      "widgets": {
+        "name": "OBS widgets",
+        "tagline": "About 15 live overlays",
+        "body": "Chat, alerts, weekly sub goal and credit roll. Subs, gift subs and gift bombs arrive in real time through the Streamer.bot client over WebSocket."
+      },
+      "plunderclips": {
+        "name": "PlunderClips",
+        "tagline": "Community platform for Twitch clips",
+        "body": "Built with OAuth 2.0, EventSub webhooks and moderation tools, deployed with Docker through GitHub Actions. Currently being rebuilt."
+      }
+    }
+  },
+  "Skills": {
+    "title": "Skills",
+    "intro": "What I reach for, and what I can pick up quickly.",
+    "groups": {
+      "frontend": "Frontend",
+      "backend": "Backend and data",
+      "ops": "Deployment",
+      "tools": "Tooling",
+      "basics": "Working knowledge"
+    }
+  },
+  "Path": {
+    "title": "Path",
+    "intro": "Self-taught first, then a bootcamp, then a product team, now my own projects.",
+    "items": {
+      "self": {
+        "when": "01/2025 – today",
+        "title": "Independent developer",
+        "where": "Own projects, Vienna",
+        "body": "Building and running all the projects above on a self-hosted Dokploy setup."
+      },
+      "poppies": {
+        "when": "08/2024 – 01/2025",
+        "title": "Junior Fullstack Web Developer",
+        "where": "MyPoppies GmbH, Vienna",
+        "body": "Rebuilt a Next.js application as part of a full code modernization. Set up CI/CD with auto-deployment through Caddy on every commit plus automated build tests. Built responsive landing pages with HTML, SCSS and Tailwind together with design and marketing."
+      },
+      "codefactory": {
+        "when": "09/2023 – 12/2023",
+        "title": "Full Stack Web Developer course",
+        "where": "CodeFactory Vienna, 525 hours",
+        "body": "Finished with 86 of 100 points (certificate no. 1143). Angular, TypeScript, SASS, PHP, Symfony, MySQL, PHPUnit, Jasmine, Scrum and Kanban."
+      },
+      "learning": {
+        "when": "09/2020 – 08/2023",
+        "title": "Self-study and other work",
+        "where": "Vienna",
+        "body": "Learned web development on my own. Worked as a digitization specialist at Reisswolf Austria, scanning confidential documents in line with GDPR."
+      },
+      "apprenticeship": {
+        "when": "02/2017 – 08/2020",
+        "title": "Apprenticeship in media technology",
+        "where": "Ipcenter GmbH, Vienna",
+        "body": "Focused on web design, video and print."
+      }
+    }
+  },
+  "Contact": {
+    "title": "Let's talk",
+    "body": "I'm open to junior and mid-level fullstack roles and to freelance projects. German is my native language, my English is B2.",
+    "email": "Write an email",
+    "github": "GitHub",
+    "location": "Vienna, Austria"
+  },
+  "Footer": {
+    "rights": "Made by Luke",
+    "legal": "Built with Next.js, Tailwind, shadcn/ui, Motion and Three.js."
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "Meta": {
+    "title": "MadeByLuke – Lukas Graf, Fullstack Web Developer",
+    "description": "Portfolio von Lukas Graf, Fullstack Web Developer aus Wien. Ich baue Next.js-Anwendungen, zentrale Login-Systeme und Tools für Livestreams."
+  },
+  "Nav": {
+    "work": "Projekte",
+    "skills": "Skills",
+    "path": "Werdegang",
+    "contact": "Kontakt",
+    "menu": "Menü öffnen",
+    "language": "Sprache",
+    "theme": "Design",
+    "themeLight": "Hell",
+    "themeDark": "Dunkel",
+    "themeSystem": "System",
+    "skip": "Zum Inhalt springen"
+  },
+  "Hero": {
+    "role": "Fullstack Web Developer, Wien",
+    "headline": "Ich baue Next.js-Apps und die Tools, auf denen Streamer laufen.",
+    "lead": "Von einem zentralen Login für mehrere Subdomains bis zu Chat-Widgets, die in Echtzeit auf Twitch-Events reagieren. Ich entwickle, deploye und betreibe alles auf eigenen Servern.",
+    "ctaWork": "Projekte ansehen",
+    "ctaContact": "Kontakt aufnehmen",
+    "scroll": "Scrollen"
+  },
+  "Work": {
+    "title": "Projekte",
+    "intro": "Die meisten laufen produktiv auf einem selbstgehosteten Dokploy-Server.",
+    "visit": "Website öffnen",
+    "code": "Quellcode",
+    "status": {
+      "live": "Online",
+      "building": "In Arbeit",
+      "rebuilding": "Wird neu aufgebaut"
+    },
+    "projects": {
+      "aboutselphy": {
+        "name": "AboutSelphy",
+        "tagline": "Website mit Admin-Dashboard",
+        "body": "Eine zweisprachige Seite mit Streamplan, Mediakit und Anfragenverwaltung. Das Mediakit wird als PDF erzeugt und lädt Reichweitenzahlen aus der YouTube- und Twitch-API. Zur Sicherheit gehören CSP mit Nonce, Security-Header, JSON-LD und Datenbankrollen mit minimalen Rechten."
+      },
+      "auth": {
+        "name": "Zentraler Login",
+        "tagline": "Ein Konto für alle Subdomains",
+        "body": "Single Sign-on mit Discord, Twitch und YouTube. Eine Session gilt für alle Subdomains, Rollen kommen aus den Discord-Serverrollen und Plattform-Konten werden ohne Duplikate verknüpft. Redirects gehen nur an vertrauenswürdige Origins."
+      },
+      "social": {
+        "name": "Link-Seite",
+        "tagline": "Eine Linktree-Alternative",
+        "body": "Eine Link-Seite mit Dashboard und Drag-and-drop-Sortierung. Subdomain-Weiterleitungen werden frei in der Datenbank definiert und über Redis zwischengespeichert."
+      },
+      "twitch": {
+        "name": "Twitch-Panel-Extension",
+        "tagline": "Streamplan direkt in Twitch",
+        "body": "Ein Panel, das den Streamplan nativ in HTML und CSS darstellt und über die JSON-API der Website lädt."
+      },
+      "widgets": {
+        "name": "OBS-Widgets",
+        "tagline": "Rund 15 Live-Overlays",
+        "body": "Chat, Alerts, Wochen-Sub-Goal und Credit Roll. Subs, Gift Subs und Gift Bombs kommen in Echtzeit über den Streamer.bot-Client per WebSocket an."
+      },
+      "plunderclips": {
+        "name": "PlunderClips",
+        "tagline": "Community-Plattform für Twitch-Clips",
+        "body": "Mit OAuth 2.0, EventSub-Webhooks und Moderationstools, per Docker und GitHub Actions deployt. Wird derzeit neu aufgebaut."
+      }
+    }
+  },
+  "Skills": {
+    "title": "Skills",
+    "intro": "Womit ich arbeite und was ich schnell dazulerne.",
+    "groups": {
+      "frontend": "Frontend",
+      "backend": "Backend und Daten",
+      "ops": "Deployment",
+      "tools": "Werkzeuge",
+      "basics": "Grundkenntnisse"
+    }
+  },
+  "Path": {
+    "title": "Werdegang",
+    "intro": "Erst Autodidakt, dann Bootcamp, dann Produktteam, jetzt eigene Projekte.",
+    "items": {
+      "self": {
+        "when": "01/2025 – heute",
+        "title": "Selbstständiger Entwickler",
+        "where": "Eigene Projekte, Wien",
+        "body": "Entwicklung und Betrieb aller oben genannten Projekte auf selbstgehostetem Dokploy."
+      },
+      "poppies": {
+        "when": "08/2024 – 01/2025",
+        "title": "Junior Fullstack Web Developer",
+        "where": "MyPoppies GmbH, Wien",
+        "body": "Next.js-Anwendung im Zuge einer vollständigen Code-Modernisierung neu aufgebaut. CI/CD-Pipeline mit Auto-Deployment über Caddy bei jedem Commit und automatisierten Build-Tests eingerichtet. Responsive Landingpages mit HTML, SCSS und Tailwind in Zusammenarbeit mit Design und Marketing entwickelt."
+      },
+      "codefactory": {
+        "when": "09/2023 – 12/2023",
+        "title": "Ausbildung Full Stack Web Developer",
+        "where": "CodeFactory Vienna, 525 UE",
+        "body": "Abschluss mit 86 von 100 Punkten (Zertifikat Nr. 1143). Angular, TypeScript, SASS, PHP, Symfony, MySQL, PHPUnit, Jasmine, Scrum und Kanban."
+      },
+      "learning": {
+        "when": "09/2020 – 08/2023",
+        "title": "Selbststudium und Gelegenheitsjobs",
+        "where": "Wien",
+        "body": "Webentwicklung im Selbststudium. Als Digitalisierungsspezialist bei Reisswolf Austria vertrauliche Dokumente DSGVO-konform digitalisiert."
+      },
+      "apprenticeship": {
+        "when": "02/2017 – 08/2020",
+        "title": "Lehre Medientechniker",
+        "where": "Ipcenter GmbH, Wien",
+        "body": "Schwerpunkt Webdesign, Video und Print."
+      }
+    }
+  },
+  "Contact": {
+    "title": "Schreib mir",
+    "body": "Ich suche Junior- und Mid-Level-Stellen als Fullstack Developer und freue mich über Freelance-Projekte. Deutsch ist meine Muttersprache, mein Englisch ist B2.",
+    "email": "E-Mail schreiben",
+    "github": "GitHub",
+    "location": "Wien, Österreich"
+  },
+  "Footer": {
+    "rights": "Made by Luke",
+    "legal": "Gebaut mit Next.js, Tailwind, shadcn/ui, Motion und Three.js."
+  }
+}
