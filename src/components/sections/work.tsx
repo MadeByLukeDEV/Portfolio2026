@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { ArrowUpRightIcon } from "lucide-react";
 import type { PublicProject } from "@/lib/projects";
+import { Reveal } from "@/components/motion/reveal";
 import { Section } from "./section";
 
 const statusStyle = {
@@ -17,8 +18,8 @@ export function Work({ projects }: { projects: PublicProject[] }) {
   return (
     <Section id="work" title={t("title")} intro={t("intro")}>
       <ul className="divide-y divide-border border-y border-border">
-        {projects.map((p) => (
-          <li key={p.id}>
+        {projects.map((p, i) => (
+          <Reveal as="li" key={p.id} delay={(i % 2) * 0.06}>
             <article className="grid gap-4 py-8 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] sm:gap-8">
               <div>
                 <h3 className="font-heading text-2xl font-semibold tracking-tight">
@@ -66,7 +67,7 @@ export function Work({ projects }: { projects: PublicProject[] }) {
                 )}
               </div>
             </article>
-          </li>
+          </Reveal>
         ))}
       </ul>
     </Section>
