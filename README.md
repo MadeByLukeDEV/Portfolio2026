@@ -25,10 +25,12 @@ Then open `http://localhost:3000/login`, sign in, and register a hardware key un
 
 Use `localhost`, not `127.0.0.1`: passkeys are bound to `PASSKEY_RP_ID`.
 
-## Production notes
+## Production
+
+The app ships as a Docker image for Dokploy, with an external MariaDB. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for the full guide and `.env.production.example` for the variables.
 
 - `BETTER_AUTH_URL=https://madebyluke.dev` and `PASSKEY_RP_ID=madebyluke.dev`. Keys registered on localhost do not carry over, register them again.
-- Run `prisma migrate deploy` on every release.
+- Pending migrations are applied when the container starts.
 - The contact form rate limit is in memory, so it assumes a single instance.
 
 ## Branches
