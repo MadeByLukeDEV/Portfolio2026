@@ -47,16 +47,24 @@ DNS: point an `A` record for `madebyluke.dev` (and `www`) at the Dokploy server.
 
 ## 4. First admin and projects
 
-The image has no seed tooling. Seed once from your machine against the production database, reachable through an SSH tunnel or an exposed port:
+The image has no seed tooling. Seed once from your machine against the production database, which must be reachable from it: expose the database port in Dokploy or use an SSH tunnel. An internal hostname such as `services-mariadb-xxxx` only resolves inside the Dokploy network.
 
-```bash
-DATABASE_URL="mysql://luke:<password>@127.0.0.1:3306/madebyluke" \
-ADMIN_EMAIL="you@example.com" \
-ADMIN_PASSWORD="<long random password>" \
+PowerShell:
+
+```powershell
+$env:DATABASE_URL = "mariadb://luke:<password>@<reachable-host>:3306/madebyluke"
+$env:ADMIN_EMAIL = "you@example.com"
+$env:ADMIN_PASSWORD = "<long random password>"
 pnpm db:seed
 ```
 
-Variables set in the shell take priority over your local `.env`. The seed is safe to repeat: it keeps projects you edited and skips an admin that already exists.
+bash:
+
+```bash
+DATABASE_URL="mariadb://luke:<password>@<reachable-host>:3306/madebyluke" ADMIN_EMAIL="you@example.com" ADMIN_PASSWORD="<long random password>" pnpm db:seed
+```
+
+Variables set in the shell take priority over your local `.env`, so you do not need to edit it. The URL format is `scheme://user:password@host:port/database`: keep the `:` between user and password. The script prints the host and port it connects to and explains common failures. It is safe to repeat: it keeps projects you edited and skips an admin that already exists.
 
 ## 5. Register your hardware key
 

@@ -58,7 +58,30 @@ async function seedAdmin() {
   console.log(`Created admin ${email}. Sign in, then register a hardware key in /admin/security.`);
 }
 
+async function checkConnection() {
+  const { parseDatabaseUrl } = await import("../src/lib/database-url");
+  const { prisma } = await import("../src/lib/prisma");
+  const { host, port } = parseDatabaseUrl(process.env.DATABASE_URL);
+  console.log(`Connecting to ${host}:${port} ...`);
+
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+  } catch (error) {
+    const meta = (error as { meta?: { driverAdapterError?: { cause?: Record<string, unknown> } } }).meta;
+    const cause = meta?.driverAdapterError?.cause;
+    console.error("Could not connect to the database.");
+    if (cause) console.error("Reason:", cause.text ?? cause.message ?? JSON.stringify(cause), cause.code ?? "");
+    if (host === "127.0.0.1" || host === "localhost") {
+      console.error("This is your local database. Is `docker compose up -d` running, or did you mean to point DATABASE_URL at production?");
+    } else if (!host.includes(".")) {
+      console.error(`"${host}" looks like an internal Docker hostname. It only resolves inside the Dokploy network, so expose the database port or use an SSH tunnel and connect through that address.`);
+    }
+    process.exit(1);
+  }
+}
+
 async function main() {
+  await checkConnection();
   await seedProjects();
   await seedAdmin();
   const { prisma } = await import("../src/lib/prisma");
