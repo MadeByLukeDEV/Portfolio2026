@@ -3,6 +3,7 @@ import { Geist_Mono, Onest, Sora } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { CustomCursor } from "@/components/layout/custom-cursor";
+import { ScrollProgress } from "@/components/layout/scroll-progress";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { site } from "@/lib/site";
@@ -81,6 +82,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
           <SmoothScroll />
           <CustomCursor />
+          <ScrollProgress />
         </ThemeProvider>
       </body>
     </html>
