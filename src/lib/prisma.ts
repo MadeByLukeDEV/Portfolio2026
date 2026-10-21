@@ -1,18 +1,12 @@
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import { PrismaClient } from "@/generated/prisma/client";
+import { parseDatabaseUrl } from "./database-url";
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
 function createClient() {
-  const url = new URL(process.env.DATABASE_URL ?? "");
-  const adapter = new PrismaMariaDb({
-    host: url.hostname,
-    port: Number(url.port || 3306),
-    user: decodeURIComponent(url.username),
-    password: decodeURIComponent(url.password),
-    database: url.pathname.slice(1),
-    connectionLimit: 5,
-  });
+  const { host, port, user, password, database } = parseDatabaseUrl(process.env.DATABASE_URL);
+  const adapter = new PrismaMariaDb({ host, port, user, password, database, connectionLimit: 5 });
   return new PrismaClient({ adapter });
 }
 
