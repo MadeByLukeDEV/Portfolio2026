@@ -19,7 +19,7 @@ CREATE USER 'luke'@'%' IDENTIFIED BY '<strong password>';
 GRANT ALL PRIVILEGES ON madebyluke.* TO 'luke'@'%';
 ```
 
-Connection string: `mysql://luke:<password>@<host>:3306/madebyluke` (URL-encode special characters in the password).
+Connection string: `mysql://luke:<password>@<host>:3306/madebyluke` (URL-encode special characters in the password). A `mariadb://` URL, as Dokploy shows for its MariaDB service, works too.
 
 ## 2. Create the application in Dokploy
 
@@ -36,7 +36,7 @@ DNS: point an `A` record for `madebyluke.dev` (and `www`) at the Dokploy server.
 
 | Variable | Value |
 | --- | --- |
-| `DATABASE_URL` | Connection string of the external MariaDB |
+| `DATABASE_URL` | Connection string of the external MariaDB, `mysql://` or `mariadb://` |
 | `BETTER_AUTH_SECRET` | Random string, at least 32 characters (`openssl rand -base64 32`). Changing it signs everyone out |
 | `BETTER_AUTH_URL` | `https://madebyluke.dev`, exact origin with no trailing slash |
 | `PASSKEY_RP_ID` | `madebyluke.dev`, bare domain without scheme |
