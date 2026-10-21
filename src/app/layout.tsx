@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Onest, Sora } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
+import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -77,6 +78,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-dvh">
         <ThemeProvider>
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <SmoothScroll />
         </ThemeProvider>
       </body>
     </html>
