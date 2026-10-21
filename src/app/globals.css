@@ -125,6 +125,33 @@
   --scene-dots: #b5ecff;
 }
 
+/* Slim floating scrollbar: a rounded gradient thumb that thickens on hover. */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--scene-b), var(--primary));
+  background-clip: padding-box;
+  border: 5px solid transparent;
+  border-radius: 999px;
+  min-height: 48px;
+  transition: border-width 0.15s;
+}
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  border-width: 3px;
+}
+@supports (-moz-appearance: none) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+  }
+}
+
 /* Only applied by CustomCursor once it confirms a mouse-like pointer. */
 html.custom-cursor,
 html.custom-cursor * {
