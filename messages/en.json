@@ -123,7 +123,18 @@
     "body": "I'm open to junior and mid-level fullstack roles and to freelance projects. German is my native language, my English is B2.",
     "email": "Write an email",
     "github": "GitHub",
-    "location": "Vienna, Austria"
+    "location": "Vienna, Austria",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send message",
+      "sending": "Sending…",
+      "success": "Thanks, your message is in. I will get back to you soon.",
+      "invalid": "Please check your details. The message needs at least 10 characters.",
+      "rateLimited": "Too many messages in a short time. Please try again later.",
+      "error": "Something went wrong on my side. Please email me directly instead."
+    }
   },
   "Footer": {
     "rights": "Made by Luke",
