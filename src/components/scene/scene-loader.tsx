@@ -2,8 +2,8 @@
 
 import dynamic from "next/dynamic";
 
-const SignalField = dynamic(() => import("./signal-field"), { ssr: false });
+const OrbScene = dynamic(() => import("./orb-scene"), { ssr: false });
 
 export function SceneLoader() {
-  return <SignalField />;
+  return <OrbScene />;
 }
