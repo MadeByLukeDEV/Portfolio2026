@@ -17,6 +17,7 @@ function safeDecode(value: string) {
 function toPrismaUrl(raw: string | undefined) {
   const match = URL_PATTERN.exec((raw ?? "").trim());
   if (!match) throw new Error("DATABASE_URL is missing or not a valid mysql:// or mariadb:// URL");
+  if ((raw ?? "").includes("@") && match[1] === undefined) throw new Error("DATABASE_URL has an @ but no user:password before it. Check there is a colon between the user name and the password: scheme://user:password@host:port/database");
   const [, user = "", password = "", host, port = "3306", path = "", search = ""] = match;
   const enc = (value: string) => encodeURIComponent(safeDecode(value));
   return `mysql://${enc(user)}:${enc(password)}@${host}:${port}${path}${search}`;
