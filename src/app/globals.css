@@ -125,6 +125,15 @@
   --scene-dots: #b5ecff;
 }
 
+/* Only applied by CustomCursor once it confirms a mouse-like pointer. */
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
+}
+html.custom-cursor :is(input:not([type="checkbox"]):not([type="radio"]), textarea, [contenteditable="true"]) {
+  cursor: text !important;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
