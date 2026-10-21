@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MadeByLuke
 
-## Getting Started
+Portfolio of Lukas Graf, fullstack web developer from Vienna. Live at madebyluke.dev.
 
-First, run the development server:
+## Stack
+
+Next.js 16, React 19, TypeScript, Tailwind CSS 4, shadcn/ui, Motion, Three.js (React Three Fiber), next-intl, next-themes, Prisma 7 with MariaDB, BetterAuth with passkeys.
+
+- One-page site in English and German. The language comes from a cookie, then the browser's Accept-Language header, so URLs have no `/en` or `/de`.
+- Light, dark and system theme.
+- Admin area at `/admin` for projects, contact messages and hardware keys. Sign-in uses a hardware key (WebAuthn) and optionally a password.
+
+## Local setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env        # fill in the secrets, see comments in the file
+docker compose up -d        # MariaDB on 127.0.0.1:3307
+pnpm exec prisma migrate deploy
+pnpm db:seed                # creates the admin from ADMIN_EMAIL / ADMIN_PASSWORD and seeds projects
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open `http://localhost:3000/login`, sign in, and register a hardware key under `/admin/security`. Once that works, set `PASSWORD_LOGIN_ENABLED=false` to turn password sign-in off.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Use `localhost`, not `127.0.0.1`: passkeys are bound to `PASSKEY_RP_ID`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Production notes
 
-## Learn More
+- `BETTER_AUTH_URL=https://madebyluke.dev` and `PASSKEY_RP_ID=madebyluke.dev`. Keys registered on localhost do not carry over, register them again.
+- Run `prisma migrate deploy` on every release.
+- The contact form rate limit is in memory, so it assumes a single instance.
 
-To learn more about Next.js, take a look at the following resources:
+## Branches
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every feature, fix and chore lives on its own branch (`feat/…`, `fix/…`, `chore/…`) and is merged into `main`.
