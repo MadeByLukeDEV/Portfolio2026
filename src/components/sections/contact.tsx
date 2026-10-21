@@ -19,12 +19,6 @@ export function Contact() {
         <div className="mt-10 max-w-2xl">
           <ContactForm />
         </div>
-        <a
-          href={`mailto:${site.email}`}
-          className="mt-10 inline-block break-all font-heading text-[clamp(1.4rem,4.6vw,3.25rem)] font-semibold tracking-tight text-primary underline decoration-2 underline-offset-8 hover:decoration-accent"
-        >
-          {site.email}
-        </a>
         <p className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-base text-muted-foreground">
           <a
             href={site.github}
