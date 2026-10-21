@@ -42,3 +42,5 @@ next-env.d.ts
 
 # local tooling
 /.claude/
+!.env.example
+/src/generated/
