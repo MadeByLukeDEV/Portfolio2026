@@ -81,8 +81,10 @@
   --sidebar-accent-foreground: oklch(0.2 0.04 255);
   --sidebar-border: oklch(0.89 0.025 235);
   --sidebar-ring: oklch(0.55 0.15 245);
-  --scene-a: #2f9bf0;
-  --scene-b: #46c2ff;
+  --scene-a: #1d5fd8;
+  --scene-b: #3fb7ff;
+  --scene-rim: #cdeeff;
+  --scene-dots: #1f6fe0;
 }
 
 .dark {
@@ -117,8 +119,10 @@
   --sidebar-accent-foreground: oklch(0.95 0.015 235);
   --sidebar-border: oklch(1 0 0 / 11%);
   --sidebar-ring: oklch(0.78 0.12 235);
-  --scene-a: #5cb8ff;
-  --scene-b: #b5ecff;
+  --scene-a: #2f7bff;
+  --scene-b: #6fd6ff;
+  --scene-rim: #8fdcff;
+  --scene-dots: #b5ecff;
 }
 
 @layer base {
