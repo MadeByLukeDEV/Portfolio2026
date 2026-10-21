@@ -46,9 +46,9 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\u003c") }}
       />
       <SceneLoader />
-      <Header />
+      <Header showWork={projects.length > 0} />
       <main id="main">
-        <Hero />
+        <Hero showWork={projects.length > 0} />
         <Work projects={projects} />
         <Skills />
         <Path />
