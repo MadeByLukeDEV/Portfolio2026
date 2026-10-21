@@ -88,41 +88,53 @@
 }
 
 .dark {
-  --background: oklch(0.17 0.035 255);
-  --foreground: oklch(0.95 0.015 235);
-  --card: oklch(0.22 0.04 255);
-  --card-foreground: oklch(0.95 0.015 235);
-  --popover: oklch(0.22 0.04 255);
-  --popover-foreground: oklch(0.95 0.015 235);
-  --primary: oklch(0.78 0.12 235);
-  --primary-foreground: oklch(0.17 0.035 255);
-  --secondary: oklch(0.28 0.04 255);
-  --secondary-foreground: oklch(0.95 0.015 235);
-  --muted: oklch(0.25 0.04 255);
-  --muted-foreground: oklch(0.74 0.04 240);
-  --accent: oklch(0.82 0.1 215);
-  --accent-foreground: oklch(0.2 0.04 255);
+  --background: oklch(0.19 0.05 262);
+  --foreground: oklch(0.96 0.01 240);
+  --card: oklch(0.27 0.06 262);
+  --card-foreground: oklch(0.96 0.01 240);
+  --popover: oklch(0.25 0.055 262);
+  --popover-foreground: oklch(0.96 0.01 240);
+  --primary: oklch(0.8 0.13 232);
+  --primary-foreground: oklch(0.2 0.05 262);
+  --secondary: oklch(0.31 0.06 262);
+  --secondary-foreground: oklch(0.96 0.01 240);
+  --muted: oklch(0.28 0.055 262);
+  --muted-foreground: oklch(0.77 0.04 250);
+  --accent: oklch(0.84 0.1 205);
+  --accent-foreground: oklch(0.2 0.05 262);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 11%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.78 0.12 235);
+  --border: oklch(1 0 0 / 14%);
+  --input: oklch(1 0 0 / 18%);
+  --ring: oklch(0.8 0.13 232);
   --chart-1: oklch(0.78 0.12 235);
   --chart-2: oklch(0.82 0.1 215);
   --chart-3: oklch(0.75 0.12 195);
   --chart-4: oklch(0.7 0.12 270);
   --chart-5: oklch(0.74 0.04 240);
-  --sidebar: oklch(0.22 0.04 255);
+  --sidebar: oklch(0.27 0.06 262);
   --sidebar-foreground: oklch(0.95 0.015 235);
-  --sidebar-primary: oklch(0.78 0.12 235);
-  --sidebar-primary-foreground: oklch(0.17 0.035 255);
-  --sidebar-accent: oklch(0.28 0.04 255);
+  --sidebar-primary: oklch(0.8 0.13 232);
+  --sidebar-primary-foreground: oklch(0.2 0.05 262);
+  --sidebar-accent: oklch(0.31 0.06 262);
   --sidebar-accent-foreground: oklch(0.95 0.015 235);
-  --sidebar-border: oklch(1 0 0 / 11%);
-  --sidebar-ring: oklch(0.78 0.12 235);
-  --scene-a: #2f7bff;
-  --scene-b: #6fd6ff;
-  --scene-rim: #8fdcff;
-  --scene-dots: #b5ecff;
+  --sidebar-border: oklch(1 0 0 / 14%);
+  --sidebar-ring: oklch(0.8 0.13 232);
+  --scene-a: #4f8dff;
+  --scene-b: #7fe3ff;
+  --scene-rim: #9fe6ff;
+  --scene-dots: #c6f1ff;
+}
+
+/* Soft colour wash behind the 3D scene so both themes have depth. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 42rem at 8% -8%, color-mix(in oklch, var(--scene-b) 20%, transparent), transparent 70%),
+    radial-gradient(52rem 44rem at 100% 105%, color-mix(in oklch, var(--scene-a) 18%, transparent), transparent 70%);
 }
 
 /* Slim floating scrollbar: a rounded gradient thumb that thickens on hover. */
