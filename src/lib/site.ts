@@ -3,5 +3,5 @@ export const site = {
   domain: "madebyluke.dev",
   author: "Lukas Graf",
   email: "glukas250720@gmail.com",
-  github: "https://github.com/",
+  github: "https://github.com/MadeByLukeDEV",
 } as const;
