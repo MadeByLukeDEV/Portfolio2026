@@ -10,6 +10,7 @@ export function SmoothScroll() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const lenis = new Lenis({
+      autoRaf: true,
       lerp: 0.09,
       wheelMultiplier: 0.95,
       // Hash links (#work, #contact) glide to the section, leaving room for the fixed header.
