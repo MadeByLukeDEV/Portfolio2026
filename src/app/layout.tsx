@@ -1,18 +1,17 @@
-import type { Metadata } from "next";
-import { Bricolage_Grotesque, Geist_Mono, Newsreader } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist_Mono, Onest, Sora } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
+const display = Sora({
   variable: "--font-display",
   subsets: ["latin"],
-  axes: ["wdth"],
 });
 
-const body = Newsreader({
+const body = Onest({
   variable: "--font-body",
   subsets: ["latin"],
 });
@@ -22,13 +21,47 @@ const mono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f2f8fe" },
+    { media: "(prefers-color-scheme: dark)", color: "#0d1b3a" },
+  ],
+  colorScheme: "light dark",
+};
+
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("Meta");
+  const [t, locale] = await Promise.all([getTranslations("Meta"), getLocale()]);
+  const url = `https://${site.domain}`;
+
   return {
-    metadataBase: new URL(`https://${site.domain}`),
-    title: t("title"),
+    metadataBase: new URL(url),
+    title: { default: t("title"), template: `%s | ${site.name}` },
     description: t("description"),
-    authors: [{ name: site.author }],
+    keywords: t("keywords").split(", "),
+    applicationName: site.name,
+    authors: [{ name: site.author, url: site.github }],
+    creator: site.author,
+    category: "technology",
+    alternates: { canonical: "/" },
+    openGraph: {
+      type: "website",
+      url,
+      siteName: site.name,
+      title: t("title"),
+      description: t("description"),
+      locale: locale === "de" ? "de_AT" : "en_US",
+      alternateLocale: locale === "de" ? ["en_US"] : ["de_AT"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+    },
   };
 }
 

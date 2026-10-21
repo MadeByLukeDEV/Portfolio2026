@@ -1,7 +1,11 @@
 {
   "Meta": {
     "title": "MadeByLuke – Lukas Graf, Fullstack Web Developer",
-    "description": "Portfolio von Lukas Graf, Fullstack Web Developer aus Wien. Ich baue Next.js-Anwendungen, zentrale Login-Systeme und Tools für Livestreams."
+    "description": "Portfolio von Lukas Graf, Fullstack Web Developer aus Wien. Ich baue Next.js-Anwendungen, zentrale Login-Systeme und Tools für Livestreams.",
+    "keywords": "Lukas Graf, Webentwickler, Fullstack Developer, Next.js, TypeScript, React, Tailwind CSS, Prisma, BetterAuth, Wien, Portfolio",
+    "jobTitle": "Fullstack Web Developer",
+    "ogAlt": "MadeByLuke: Portfolio von Lukas Graf, Fullstack Web Developer aus Wien",
+    "ogTagline": "Ich baue Next.js-Apps und die Tools, auf denen Streamer laufen."
   },
   "Nav": {
     "work": "Projekte",
