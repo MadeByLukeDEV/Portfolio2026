@@ -2,8 +2,8 @@
 
 import dynamic from "next/dynamic";
 
-const OrbScene = dynamic(() => import("./orb-scene"), { ssr: false });
+const JourneyScene = dynamic(() => import("./journey-scene"), { ssr: false });
 
 export function SceneLoader() {
-  return <OrbScene />;
+  return <JourneyScene />;
 }

@@ -10,9 +10,10 @@ export function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-title"
-      className="relative scroll-mt-14 border-t border-border bg-background/80 backdrop-blur-sm"
+      className="relative scroll-mt-14"
     >
-      <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+        <div className="rounded-3xl border border-border/70 bg-card/55 p-6 shadow-[0_20px_60px_-30px_rgb(0_0_0/0.45)] backdrop-blur-xl sm:p-12">
         <Reveal as="h2" className="font-heading text-4xl font-bold tracking-tight sm:text-6xl">
           <span id="contact-title">{t("title")}</span>
         </Reveal>
@@ -33,6 +34,7 @@ export function Contact() {
           </a>
           <span className="inline-flex min-h-11 items-center">{t("location")}</span>
         </p>
+        </div>
       </div>
     </section>
   );
