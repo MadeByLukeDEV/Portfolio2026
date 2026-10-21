@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { ArrowDownIcon } from "lucide-react";
 import { HeroHeadline } from "./hero-headline";
 
-export function Hero() {
+export function Hero({ showWork = true }: { showWork?: boolean }) {
   const t = useTranslations("Hero");
 
   return (
@@ -16,13 +16,15 @@ export function Hero() {
         {t("lead")}
       </p>
       <div className="mt-10 flex flex-wrap items-center gap-3">
-        <a
-          href="#work"
-          className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 font-heading text-base font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-        >
-          {t("ctaWork")}
-          <ArrowDownIcon className="size-4" aria-hidden />
-        </a>
+        {showWork && (
+          <a
+            href="#work"
+            className="inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 font-heading text-base font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            {t("ctaWork")}
+            <ArrowDownIcon className="size-4" aria-hidden />
+          </a>
+        )}
         <a
           href="#contact"
           className="inline-flex h-12 items-center rounded-full border border-border bg-background/60 px-6 font-heading text-base font-semibold backdrop-blur transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"

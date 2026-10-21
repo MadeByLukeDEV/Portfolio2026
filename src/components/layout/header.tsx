@@ -12,10 +12,11 @@ import { site } from "@/lib/site";
 import { LanguageToggle } from "./language-toggle";
 import { ThemeToggle } from "./theme-toggle";
 
-const links = ["work", "skills", "path", "contact"] as const;
+const allLinks = ["work", "skills", "path", "contact"] as const;
 
-export function Header() {
+export function Header({ showWork = true }: { showWork?: boolean }) {
   const t = useTranslations("Nav");
+  const links = allLinks.filter((id) => showWork || id !== "work");
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-md">

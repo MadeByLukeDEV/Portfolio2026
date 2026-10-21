@@ -46,6 +46,9 @@ export async function getPublicProjects(locale: string): Promise<PublicProject[]
       where: { published: true },
       orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }],
     });
+    // A database that was never seeded shows the bundled list instead of an empty site.
+    // Once projects exist, hiding all of them in the admin is respected.
+    if (rows.length === 0 && (await prisma.project.count()) === 0) return fromStatic(lang);
     return rows.map((r) => ({
       id: r.id,
       status: (["live", "building", "rebuilding"].includes(r.status) ? r.status : "live") as ProjectStatus,
