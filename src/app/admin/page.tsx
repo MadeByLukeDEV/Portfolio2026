@@ -1,55 +1,57 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { requireAdmin } from "@/lib/session";
-import { PasskeyManager } from "./passkey-manager";
-import { SignOutButton } from "./sign-out-button";
 
-export const metadata: Metadata = {
-  title: "Admin",
-  robots: { index: false, follow: false },
-};
-
-export default async function AdminPage() {
-  const session = await requireAdmin();
-
-  const [passkeys, users] = await Promise.all([
-    prisma.passkey.findMany({
-      where: { userId: session.user.id },
-      orderBy: { createdAt: "desc" },
-      select: { id: true, name: true, createdAt: true },
-    }),
-    prisma.user.count(),
+export default async function AdminOverview() {
+  const [projects, published, unread, latest] = await Promise.all([
+    prisma.project.count(),
+    prisma.project.count({ where: { published: true } }),
+    prisma.contactMessage.count({ where: { read: false } }),
+    prisma.contactMessage.findMany({ orderBy: { createdAt: "desc" }, take: 3 }),
   ]);
 
+  const stats = [
+    { label: "Projects", value: `${published} of ${projects} published`, href: "/admin/projects" },
+    { label: "Unread messages", value: String(unread), href: "/admin/messages" },
+  ];
+
   return (
-    <main className="mx-auto max-w-3xl px-5 py-16">
-      <header className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="font-heading text-4xl font-bold tracking-tight">Admin</h1>
-          <p className="mt-1 text-muted-foreground">Signed in as {session.user.email}</p>
-        </div>
-        <SignOutButton />
-      </header>
+    <div className="space-y-12">
+      <h1 className="font-heading text-3xl font-bold tracking-tight">Overview</h1>
 
-      <section aria-labelledby="keys" className="mt-12">
-        <h2 id="keys" className="mb-4 font-heading text-2xl font-semibold">
-          Hardware keys
-        </h2>
-        <PasskeyManager
-          passkeys={passkeys.map((p) => ({
-            id: p.id,
-            name: p.name,
-            createdAt: p.createdAt?.toISOString() ?? null,
-          }))}
-        />
-      </section>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {stats.map((s) => (
+          <Link
+            key={s.label}
+            href={s.href}
+            className="rounded-xl border border-border bg-card p-5 transition-colors hover:bg-muted"
+          >
+            <p className="text-sm text-muted-foreground">{s.label}</p>
+            <p className="mt-1 font-heading text-2xl font-semibold">{s.value}</p>
+          </Link>
+        ))}
+      </div>
 
-      <section aria-labelledby="overview" className="mt-12">
-        <h2 id="overview" className="mb-4 font-heading text-2xl font-semibold">
-          Overview
+      <section aria-labelledby="latest">
+        <h2 id="latest" className="mb-4 font-heading text-xl font-semibold">
+          Latest messages
         </h2>
-        <p className="text-muted-foreground">{users} registered account(s).</p>
+        {latest.length === 0 ? (
+          <p className="text-muted-foreground">
+            No messages yet. They show up here when someone uses the contact form.
+          </p>
+        ) : (
+          <ul className="divide-y divide-border rounded-xl border border-border">
+            {latest.map((m) => (
+              <li key={m.id} className="px-4 py-3">
+                <p className="font-medium">
+                  {m.name} <span className="font-normal text-muted-foreground">({m.email})</span>
+                </p>
+                <p className="line-clamp-1 text-muted-foreground">{m.message}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
-    </main>
+    </div>
   );
 }

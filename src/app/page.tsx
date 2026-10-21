@@ -1,4 +1,5 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { getPublicProjects } from "@/lib/projects";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { SceneLoader } from "@/components/scene/scene-loader";
@@ -10,7 +11,8 @@ import { Work } from "@/components/sections/work";
 import { site } from "@/lib/site";
 
 export default async function Home() {
-  const t = await getTranslations("Meta");
+  const [t, locale] = await Promise.all([getTranslations("Meta"), getLocale()]);
+  const projects = await getPublicProjects(locale);
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -47,7 +49,7 @@ export default async function Home() {
       <Header />
       <main id="main">
         <Hero />
-        <Work />
+        <Work projects={projects} />
         <Skills />
         <Path />
         <Contact />

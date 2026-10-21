@@ -95,3 +95,38 @@ model Passkey {
   @@index([userId])
   @@map("passkey")
 }
+
+model Project {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  status     String   @default("live")
+  nameEn     String
+  nameDe     String
+  taglineEn  String
+  taglineDe  String
+  bodyEn     String   @db.Text
+  bodyDe     String   @db.Text
+  stack      String   @db.Text
+  url        String?
+  repo       String?
+  sortOrder  Int      @default(0)
+  published  Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([published, sortOrder])
+  @@map("project")
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String   @db.Text
+  locale    String   @default("en")
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([read, createdAt])
+  @@map("contact_message")
+}

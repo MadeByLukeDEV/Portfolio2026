@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { site } from "@/lib/site";
+import { ContactForm } from "./contact-form";
 
 export function Contact() {
   const t = useTranslations("Contact");
@@ -15,6 +16,9 @@ export function Contact() {
           {t("title")}
         </h2>
         <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{t("body")}</p>
+        <div className="mt-10 max-w-2xl">
+          <ContactForm />
+        </div>
         <a
           href={`mailto:${site.email}`}
           className="mt-10 inline-block break-all font-heading text-[clamp(1.4rem,4.6vw,3.25rem)] font-semibold tracking-tight text-primary underline decoration-2 underline-offset-8 hover:decoration-accent"

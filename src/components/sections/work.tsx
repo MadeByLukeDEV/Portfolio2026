@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { ArrowUpRightIcon } from "lucide-react";
-import { projects } from "@/content/projects";
+import type { PublicProject } from "@/lib/projects";
 import { Section } from "./section";
 
 const statusStyle = {
@@ -9,8 +9,10 @@ const statusStyle = {
   rebuilding: "bg-muted text-muted-foreground",
 } as const;
 
-export function Work() {
+export function Work({ projects }: { projects: PublicProject[] }) {
   const t = useTranslations("Work");
+
+  if (projects.length === 0) return null;
 
   return (
     <Section id="work" title={t("title")} intro={t("intro")}>
@@ -20,11 +22,9 @@ export function Work() {
             <article className="grid gap-4 py-8 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] sm:gap-8">
               <div>
                 <h3 className="font-heading text-2xl font-semibold tracking-tight">
-                  {t(`projects.${p.id}.name`)}
+                  {p.name}
                 </h3>
-                <p className="mt-1 text-base text-muted-foreground">
-                  {t(`projects.${p.id}.tagline`)}
-                </p>
+                <p className="mt-1 text-base text-muted-foreground">{p.tagline}</p>
                 <span
                   className={`mt-3 inline-block rounded-full px-2.5 py-1 font-heading text-xs font-medium ${statusStyle[p.status]}`}
                 >
@@ -32,9 +32,7 @@ export function Work() {
                 </span>
               </div>
               <div>
-                <p className="max-w-prose text-[1.05rem] leading-relaxed">
-                  {t(`projects.${p.id}.body`)}
-                </p>
+                <p className="max-w-prose text-[1.05rem] leading-relaxed">{p.body}</p>
                 <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-sm text-muted-foreground">
                   {p.stack.map((s) => (
                     <li key={s}>{s}</li>

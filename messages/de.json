@@ -123,7 +123,18 @@
     "body": "Ich suche Junior- und Mid-Level-Stellen als Fullstack Developer und freue mich über Freelance-Projekte. Deutsch ist meine Muttersprache, mein Englisch ist B2.",
     "email": "E-Mail schreiben",
     "github": "GitHub",
-    "location": "Wien, Österreich"
+    "location": "Wien, Österreich",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet…",
+      "success": "Danke, deine Nachricht ist angekommen. Ich melde mich bald.",
+      "invalid": "Bitte prüfe deine Angaben. Die Nachricht braucht mindestens 10 Zeichen.",
+      "rateLimited": "Zu viele Nachrichten in kurzer Zeit. Bitte versuche es später erneut.",
+      "error": "Auf meiner Seite ist etwas schiefgelaufen. Bitte schreib mir direkt eine E-Mail."
+    }
   },
   "Footer": {
     "rights": "Made by Luke",
