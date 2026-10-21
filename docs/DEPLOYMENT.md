@@ -19,7 +19,7 @@ CREATE USER 'luke'@'%' IDENTIFIED BY '<strong password>';
 GRANT ALL PRIVILEGES ON madebyluke.* TO 'luke'@'%';
 ```
 
-Connection string: `mysql://luke:<password>@<host>:3306/madebyluke` (URL-encode special characters in the password). A `mariadb://` URL, as Dokploy shows for its MariaDB service, works too.
+Connection string: `mysql://luke:<password>@<host>:3306/madebyluke` (URL-encode special characters in the password). A `mariadb://` URL, as Dokploy shows for its MariaDB service, works too, and so does a password containing characters like `/`, `+`, `=` or `@` without percent-encoding (the credentials end at the last `@`).
 
 ## 2. Create the application in Dokploy
 
