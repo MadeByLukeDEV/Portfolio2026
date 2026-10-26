@@ -98,4 +98,4 @@ Push to `main`. CI (lint, build, image build) runs in GitHub Actions, Dokploy re
 - **Sign-in:** register two hardware keys, then set `PASSWORD_LOGIN_ENABLED=false`. Sessions last three days. Failed sign-ins are rate limited.
 - **Database user:** the container runs migrations on start, so its user needs schema rights. For least privilege, run migrations with `RUN_MIGRATIONS=false` from CI or your machine and give the app a user with only `SELECT, INSERT, UPDATE, DELETE`.
 - **Proxy headers:** the contact form rate limit trusts `x-forwarded-for`. Keep the app behind Traefik (Dokploy's default), which sets it, and do not publish port 3000 directly.
-- **Stricter key checks:** `userVerification` is `preferred` in `src/lib/auth.ts`. Switch to `required` once every key has a PIN, so signing in always needs the PIN or a fingerprint.
+- **Key checks:** `userVerification` is `required` in `src/lib/auth.ts`, so every sign-in needs the key's PIN or fingerprint. Set a PIN on each key before relying on it, and keep `PASSWORD_LOGIN_ENABLED=true` until you have signed in with the key once.
