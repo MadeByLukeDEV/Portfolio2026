@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
-import { skillGroups, type SkillGroup } from "@/content/skills";
 import { Reveal } from "@/components/motion/reveal";
-import { Section } from "./section";
+import { skillGroups, type SkillGroup } from "@/content/skills";
+import { Section, surface } from "./section";
 
 export function Skills() {
   const t = useTranslations("Skills");
@@ -9,11 +9,11 @@ export function Skills() {
 
   return (
     <Section id="skills" title={t("title")} intro={t("intro")}>
-      <dl className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
+      <dl className={`${surface} grid gap-x-12 gap-y-12 p-6 sm:grid-cols-2 sm:p-12 lg:grid-cols-3`}>
         {groups.map((g, i) => (
-          <Reveal key={g} delay={(i % 2) * 0.08} className="border-t border-border pt-4">
-            <dt className="font-heading text-lg font-semibold">{t(`groups.${g}`)}</dt>
-            <dd className="mt-2 text-[1.05rem] leading-relaxed text-muted-foreground">
+          <Reveal key={g} delay={(i % 3) * 0.07}>
+            <dt className="font-heading text-2xl font-bold tracking-tight">{t(`groups.${g}`)}</dt>
+            <dd className="mt-3 text-xl leading-snug text-muted-foreground">
               {skillGroups[g].join(", ")}
             </dd>
           </Reveal>

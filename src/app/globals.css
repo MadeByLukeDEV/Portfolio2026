@@ -8,7 +8,6 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -125,19 +124,7 @@
   --scene-dots: #c6f1ff;
 }
 
-/* Soft colour wash behind the 3D scene so both themes have depth. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -20;
-  pointer-events: none;
-  background:
-    radial-gradient(60rem 42rem at 8% -8%, color-mix(in oklch, var(--scene-b) 20%, transparent), transparent 70%),
-    radial-gradient(52rem 44rem at 100% 105%, color-mix(in oklch, var(--scene-a) 18%, transparent), transparent 70%);
-}
-
-/* Slim floating scrollbar: a rounded gradient thumb that thickens on hover. */
+/* Slim floating scrollbar: a rounded thumb that thickens on hover. */
 ::-webkit-scrollbar {
   width: 14px;
   height: 14px;
@@ -146,7 +133,7 @@ body::before {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--scene-b), var(--primary));
+  background: var(--primary);
   background-clip: padding-box;
   border: 5px solid transparent;
   border-radius: 999px;

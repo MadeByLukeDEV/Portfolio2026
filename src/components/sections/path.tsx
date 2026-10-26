@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Reveal } from "@/components/motion/reveal";
-import { Section } from "./section";
+import { Section, surface } from "./section";
 
 const items = ["self", "poppies", "codefactory", "learning", "apprenticeship"] as const;
 
@@ -9,21 +9,21 @@ export function Path() {
 
   return (
     <Section id="path" title={t("title")} intro={t("intro")}>
-      <ol className="relative ml-2 border-l border-border">
+      <ol className={`${surface} space-y-12 p-6 sm:p-12`}>
         {items.map((id, i) => (
-          <Reveal as="li" key={id} className="relative pb-10 pl-8 last:pb-0">
-            <span
-              aria-hidden
-              className={`absolute -left-[5px] top-2 size-2.5 rounded-full ${i === 0 ? "bg-primary ring-4 ring-primary/20" : "bg-border"}`}
-            />
-            <p className="font-mono text-sm text-muted-foreground">{t(`items.${id}.when`)}</p>
-            <h3 className="mt-1 font-heading text-xl font-semibold tracking-tight">
-              {t(`items.${id}.title`)}
-            </h3>
-            <p className="text-base text-muted-foreground">{t(`items.${id}.where`)}</p>
-            <p className="mt-3 max-w-prose text-[1.05rem] leading-relaxed">
-              {t(`items.${id}.body`)}
+          <Reveal as="li" key={id} className="grid gap-2 lg:grid-cols-12 lg:gap-10">
+            <p
+              className={`text-lg font-semibold lg:col-span-3 ${i === 0 ? "text-primary" : "text-muted-foreground"}`}
+            >
+              {t(`items.${id}.when`)}
             </p>
+            <div className="lg:col-span-9">
+              <h3 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+                {t(`items.${id}.title`)}
+              </h3>
+              <p className="mt-1 text-lg text-muted-foreground">{t(`items.${id}.where`)}</p>
+              <p className="mt-4 max-w-prose text-lg leading-relaxed">{t(`items.${id}.body`)}</p>
+            </div>
           </Reveal>
         ))}
       </ol>

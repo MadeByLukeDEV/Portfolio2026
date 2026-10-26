@@ -7,7 +7,7 @@ export function HeroHeadline({ text }: { text: string }) {
   const words = text.split(" ");
 
   return (
-    <h1 className="max-w-4xl font-heading text-[clamp(2.6rem,8.2vw,6.75rem)] font-bold leading-[0.95] tracking-[-0.04em] text-balance">
+    <h1 className="max-w-[9em] font-heading text-[clamp(2.6rem,7.4vw,6.25rem)] font-bold leading-[0.95] tracking-[-0.04em] text-balance">
       {words.map((word, i) => (
         <span key={`${word}-${i}`} className="inline-block overflow-hidden pb-[0.08em] align-bottom">
           <motion.span

@@ -5,7 +5,7 @@
     "keywords": "Lukas Graf, Webentwickler, Fullstack Developer, Next.js, TypeScript, React, Tailwind CSS, Prisma, BetterAuth, Wien, Portfolio",
     "jobTitle": "Fullstack Web Developer",
     "ogAlt": "MadeByLuke: Portfolio von Lukas Graf, Fullstack Web Developer aus Wien",
-    "ogTagline": "Ich baue Next.js-Apps und die Tools, auf denen Streamer laufen."
+    "ogTagline": "Next.js-Apps für Streamer."
   },
   "Nav": {
     "work": "Projekte",
@@ -21,9 +21,8 @@
     "skip": "Zum Inhalt springen"
   },
   "Hero": {
-    "role": "Fullstack Web Developer, Wien",
-    "headline": "Ich baue Next.js-Apps und die Tools, auf denen Streamer laufen.",
-    "lead": "Von einem zentralen Login für mehrere Subdomains bis zu Chat-Widgets, die in Echtzeit auf Twitch-Events reagieren. Ich entwickle, deploye und betreibe alles auf eigenen Servern.",
+    "headline": "Next.js-Apps für Streamer.",
+    "lead": "Ich bin Lukas, Fullstack-Entwickler in Wien. Ich baue zentrale Logins, Dashboards und Live-Overlays und betreibe alles auf eigenen Servern.",
     "ctaWork": "Projekte ansehen",
     "ctaContact": "Kontakt aufnehmen",
     "scroll": "Scrollen"
@@ -69,7 +68,11 @@
         "tagline": "Community-Plattform für Twitch-Clips",
         "body": "Mit OAuth 2.0, EventSub-Webhooks und Moderationstools, per Docker und GitHub Actions deployt. Wird derzeit neu aufgebaut."
       }
-    }
+    },
+    "online": "Online",
+    "offline": "Offline",
+    "screenshot": "Screenshot von {name}",
+    "visitName": "{name} öffnen"
   },
   "Skills": {
     "title": "Skills",
