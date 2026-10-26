@@ -16,12 +16,17 @@ export function PasskeyManager({ passkeys }: { passkeys: PasskeyRow[] }) {
   function add(form: FormData) {
     setError(null);
     startTransition(async () => {
-      const { error } = await authClient.passkey.addPasskey({
-        name: String(form.get("name") || "Security key"),
-        authenticatorAttachment: "cross-platform",
-      });
-      if (error) return setError(error.message ?? "Could not register the key.");
-      router.refresh();
+      try {
+        const { error } = await authClient.passkey.addPasskey({
+          name: String(form.get("name") || "Security key"),
+          authenticatorAttachment: "cross-platform",
+        });
+        if (error) return setError(error.message ?? "Could not register the key.");
+        router.refresh();
+      } catch {
+        // The browser refuses keys that cannot confirm with a PIN or fingerprint.
+        setError("This key could not confirm with a PIN or fingerprint. Set a PIN on the key, then try again.");
+      }
     });
   }
 
