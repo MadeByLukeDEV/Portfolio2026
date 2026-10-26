@@ -14,10 +14,14 @@ export function LoginForm({ passwordLogin }: { passwordLogin: boolean }) {
   function signInWithKey() {
     setError(null);
     startTransition(async () => {
-      const { error } = await authClient.signIn.passkey();
-      if (error) return setError(error.message ?? "Security key sign-in failed.");
-      router.replace("/admin");
-      router.refresh();
+      try {
+        const { error } = await authClient.signIn.passkey();
+        if (error) return setError(error.message ?? "Security key sign-in failed.");
+        router.replace("/admin");
+        router.refresh();
+      } catch {
+        setError("Security key sign-in failed. Enter the key's PIN or use your fingerprint when asked.");
+      }
     });
   }
 
