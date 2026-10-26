@@ -19,7 +19,7 @@ export function Header({ showWork = true }: { showWork?: boolean }) {
   const links = allLinks.filter((id) => showWork || id !== "work");
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-40 bg-background/75 backdrop-blur-md">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-primary-foreground"
@@ -41,7 +41,7 @@ export function Header({ showWork = true }: { showWork?: boolean }) {
               {t(id)}
             </a>
           ))}
-          <span className="mx-2 h-5 w-px bg-border" aria-hidden />
+          <span className="mx-1" aria-hidden />
           <LanguageToggle />
           <ThemeToggle />
         </nav>
@@ -66,7 +66,7 @@ export function Header({ showWork = true }: { showWork?: boolean }) {
                     render={
                       <a
                         href={`#${id}`}
-                        className="border-b border-border py-4 font-heading text-2xl font-semibold"
+                        className="py-4 font-heading text-2xl font-semibold"
                       >
                         {t(id)}
                       </a>

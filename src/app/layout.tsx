@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Onest, Sora } from "next/font/google";
+import { Onest, Sora } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { CustomCursor } from "@/components/layout/custom-cursor";
@@ -16,11 +16,6 @@ const display = Sora({
 
 const body = Onest({
   variable: "--font-body",
-  subsets: ["latin"],
-});
-
-const mono = Geist_Mono({
-  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
@@ -75,7 +70,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${display.variable} ${body.variable} ${mono.variable} antialiased`}
+      className={`${display.variable} ${body.variable} antialiased`}
     >
       <body className="min-h-dvh">
         <ThemeProvider>

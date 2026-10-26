@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/motion/reveal";
 
+/** A titled block: the heading runs large across the top and the content gets the full width below. */
 export function Section({
   id,
   title,
@@ -12,27 +13,24 @@ export function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section
-      id={id}
-      aria-labelledby={`${id}-title`}
-      className="relative scroll-mt-14"
-    >
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.2fr)] lg:gap-16">
-        <Reveal as="header" className="lg:sticky lg:top-24 lg:self-start">
+    <section id={id} aria-labelledby={`${id}-title`} className="relative scroll-mt-14">
+      <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
+        <Reveal as="header" className="max-w-3xl">
           <h2
             id={`${id}-title`}
-            className="font-heading text-4xl font-bold tracking-tight sm:text-5xl"
+            className="font-heading text-5xl font-bold tracking-[-0.03em] sm:text-7xl"
           >
             {title}
           </h2>
           {intro && (
-            <p className="mt-4 max-w-sm text-lg leading-relaxed text-muted-foreground">{intro}</p>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">{intro}</p>
           )}
         </Reveal>
-        <div className="rounded-3xl border border-border/70 bg-card/55 p-5 shadow-[0_20px_60px_-30px_rgb(0_0_0/0.45)] backdrop-blur-xl sm:p-8">
-          {children}
-        </div>
+        <div className="mt-14 sm:mt-20">{children}</div>
       </div>
     </section>
   );
 }
+
+/** The one surface that text sits on where it crosses the 3D scene. */
+export const surface = "rounded-3xl bg-card/70 backdrop-blur-xl";

@@ -21,8 +21,7 @@ export default async function OpenGraphImage() {
           justifyContent: "space-between",
           padding: 72,
           color: "#eaf6ff",
-          background:
-            "radial-gradient(circle at 85% 15%, #2f9bf0 0%, rgba(47,155,240,0) 45%), linear-gradient(160deg, #0d1b3a 0%, #0a1226 100%)",
+          background: "#0d1b3a",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
@@ -34,7 +33,7 @@ export default async function OpenGraphImage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "linear-gradient(135deg, #46c2ff, #2f6fe0)",
+              background: "#2f8ee0",
               fontSize: 44,
               fontWeight: 800,
               color: "#fff",

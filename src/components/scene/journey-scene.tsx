@@ -162,18 +162,18 @@ const SECTION_IDS = ["top", "work", "skills", "path", "contact"] as const;
 
 /** Where the orb sits in each section, as fractions of the viewport (x, y) with y up. */
 const POSES_WIDE: Pose[] = [
-  { x: 0.29, y: 0.0, scale: 0.82, amp: 0.28, opacity: 1 },
+  { x: 0.33, y: -0.02, scale: 0.7, amp: 0.28, opacity: 1 },
   { x: -0.34, y: -0.2, scale: 0.5, amp: 0.34, opacity: 0.9 },
   { x: 0.34, y: 0.12, scale: 0.6, amp: 0.46, opacity: 0.9 },
   { x: -0.34, y: -0.08, scale: 0.55, amp: 0.22, opacity: 0.9 },
-  { x: 0.0, y: 0.0, scale: 0.95, amp: 0.34, opacity: 0.55 },
+  { x: 0.3, y: 0.04, scale: 0.8, amp: 0.34, opacity: 0.7 },
 ];
 const POSES_NARROW: Pose[] = [
-  { x: 0.0, y: 0.27, scale: 0.58, amp: 0.28, opacity: 1 },
-  { x: 0.28, y: 0.3, scale: 0.34, amp: 0.34, opacity: 0.55 },
-  { x: -0.28, y: 0.3, scale: 0.36, amp: 0.46, opacity: 0.55 },
-  { x: 0.28, y: 0.3, scale: 0.34, amp: 0.22, opacity: 0.55 },
-  { x: 0.0, y: 0.18, scale: 0.6, amp: 0.34, opacity: 0.45 },
+  { x: 0.0, y: 0.3, scale: 0.55, amp: 0.28, opacity: 1 },
+  { x: 0.28, y: 0.3, scale: 0.34, amp: 0.34, opacity: 0.3 },
+  { x: -0.28, y: 0.3, scale: 0.36, amp: 0.46, opacity: 0.3 },
+  { x: 0.28, y: 0.3, scale: 0.34, amp: 0.22, opacity: 0.3 },
+  { x: 0.0, y: 0.18, scale: 0.6, amp: 0.34, opacity: 0.3 },
 ];
 
 const SHARD_COUNT = 42;
@@ -260,11 +260,13 @@ function step(
   const pageWorld = document.documentElement.scrollHeight * worldPerPx;
   const scrollWorld = window.scrollY * worldPerPx;
   const halfW = state.viewport.width / 2;
+  const wide = state.viewport.aspect > 1.1;
   for (let k = 0; k < SHARD_COUNT; k++) {
     const depth = hash(k + 11) * 5 - 3.5;
     const frac = (k + hash(k + 3) * 0.8) / SHARD_COUNT;
     const side = hash(k + 5) > 0.5 ? 1 : -1;
-    const x = side * (halfW * (0.55 + hash(k + 7) * 0.6)) + Math.sin(time * 0.3 + k) * 0.12;
+    const reach = wide ? 0.9 + hash(k + 7) * 0.2 : 0.55 + hash(k + 7) * 0.6;
+    const x = side * halfW * reach + Math.sin(time * 0.3 + k) * 0.12;
     const y =
       state.viewport.height / 2 -
       frac * pageWorld +
@@ -272,7 +274,7 @@ function step(
       Math.sin(time * 0.4 + k * 1.7) * 0.18;
     dummy.position.set(x, y, depth);
     dummy.rotation.set(time * 0.15 * (1 + hash(k)), time * 0.2 * (1 + hash(k + 1)), k);
-    dummy.scale.setScalar(0.1 + hash(k + 13) * 0.3);
+    dummy.scale.setScalar(wide ? 0.08 + hash(k + 13) * 0.18 : 0.1 + hash(k + 13) * 0.3);
     dummy.updateMatrix();
     shards.setMatrixAt(k, dummy.matrix);
   }
