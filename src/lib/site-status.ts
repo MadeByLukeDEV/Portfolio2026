@@ -3,11 +3,27 @@ import "server-only";
 const TTL_MS = 5 * 60 * 1000;
 const cache = new Map<string, { at: number; online: boolean }>();
 
+/** Only public hostnames are probed, so a mistyped or hostile project URL cannot reach internal services. */
+function isPublicHost(url: string) {
+  try {
+    const { protocol, hostname } = new URL(url);
+    if (protocol !== "https:" && protocol !== "http:") return false;
+    if (hostname === "localhost" || hostname.endsWith(".localhost") || hostname.endsWith(".internal")) return false;
+    // Reject IP literals (private ranges and the rest) and single-label names such as Docker service hosts.
+    if (/^[\d.]+$/.test(hostname) || hostname.includes(":") || !hostname.includes(".")) return false;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 async function probe(url: string): Promise<boolean> {
+  if (!isPublicHost(url)) return false;
   try {
     const res = await fetch(url, {
       method: "HEAD",
-      redirect: "follow",
+      // A redirect already proves the server answers; following it could lead somewhere internal.
+      redirect: "manual",
       cache: "no-store",
       signal: AbortSignal.timeout(2500),
     });

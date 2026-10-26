@@ -90,4 +90,12 @@ Push to `main`. CI (lint, build, image build) runs in GitHub Actions, Dokploy re
   ```
 
   On Docker Desktop, point `DATABASE_URL` at `host.docker.internal` to reach a database on your machine.
-- A strict Content-Security-Policy is not set yet. The site uses inline styles and scripts from Next.js, so a nonce-based policy needs its own pass.
+- Every page is served with a nonce-based Content-Security-Policy from `src/proxy.ts`. If you add a third-party script, font, image host or API, allow it there, otherwise the browser blocks it.
+
+## Security notes
+
+- **Secrets:** keep `DATABASE_URL`, `BETTER_AUTH_SECRET` and the seed password out of git and chats. Rotate any that were shared.
+- **Sign-in:** register two hardware keys, then set `PASSWORD_LOGIN_ENABLED=false`. Sessions last three days. Failed sign-ins are rate limited.
+- **Database user:** the container runs migrations on start, so its user needs schema rights. For least privilege, run migrations with `RUN_MIGRATIONS=false` from CI or your machine and give the app a user with only `SELECT, INSERT, UPDATE, DELETE`.
+- **Proxy headers:** the contact form rate limit trusts `x-forwarded-for`. Keep the app behind Traefik (Dokploy's default), which sets it, and do not publish port 3000 directly.
+- **Stricter key checks:** `userVerification` is `preferred` in `src/lib/auth.ts`. Switch to `required` once every key has a PIN, so signing in always needs the PIN or a fingerprint.

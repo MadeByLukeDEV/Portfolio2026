@@ -1,8 +1,12 @@
 allowBuilds:
   '@parcel/watcher': false
-  '@prisma/engines': set this to true or false
+  '@prisma/engines': false
   '@swc/core': false
-  esbuild: set this to true or false
-  prisma: set this to true or false
+  esbuild: false
+  prisma: false
   sharp: false
   unrs-resolver: false
+
+# The shadcn CLI pulls in an MCP SDK whose express/body-parser has a known DoS. Force the patched release.
+overrides:
+  body-parser@>=2.0.0 <2.4.0: '>=2.4.0'
