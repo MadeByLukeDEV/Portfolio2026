@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Onest, Sora } from "next/font/google";
+import { headers } from "next/headers";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { CustomCursor } from "@/components/layout/custom-cursor";
@@ -65,6 +66,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const locale = await getLocale();
+  // Set by src/proxy.ts for this request; lets the theme script run under the CSP.
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
     <html
@@ -73,7 +76,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       className={`${display.variable} ${body.variable} antialiased`}
     >
       <body className="min-h-dvh">
-        <ThemeProvider>
+        <ThemeProvider nonce={nonce}>
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
           <SmoothScroll />
           <CustomCursor />
